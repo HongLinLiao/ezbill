@@ -1,12 +1,15 @@
 import express from 'express';
 
+import { Env } from '@/utils/env';
+
 const app = express();
-const port = 3000;
 
 app.get('/', (req, res) => {
   res.send('OK');
 });
 
-app.listen(port, () => {
-  console.log(`🚀 Server is running at http://localhost:${port}`);
+app.listen(Env.port, () => {
+  console.log(
+    `🚀 ${Env.env} Server is running at http://localhost:${Env.port}`,
+  );
 });
