@@ -1,0 +1,29 @@
+name: PR Build
+
+on:
+  workflow_dispatch:
+  pull_request:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  CI-Stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Pnpm setting
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install package
+        run: pnpm install
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Build
+        run: pnpm build
